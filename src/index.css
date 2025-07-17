@@ -1,0 +1,47 @@
+@import "tailwindcss";
+* {
+  scroll-behavior: smooth;
+}
+
+/* Remove the old .bg-aesthetic class and add this new .bg-space class.
+  This creates three layers of stars that slowly move to create a parallax effect.
+*/
+@keyframes move-stars {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2000px); }
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars-small {
+  background-image: radial-gradient(1px 1px, #fff, transparent);
+  background-size: 240px 240px;
+}
+
+.stars-medium {
+  background-image: radial-gradient(2px 2px, #fff, transparent);
+  background-size: 320px 320px;
+  animation: move-stars 150s linear infinite;
+}
+
+.stars-large {
+  background-image: radial-gradient(3px 3px, #fff, transparent);
+  background-size: 400px 400px;
+  animation: move-stars 100s linear infinite;
+}
+
+/* This is the main background color */
+.bg-space-container {
+  background-color: #0c0e19;
+  position: relative;
+  overflow: hidden;
+}
