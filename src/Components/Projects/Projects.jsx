@@ -72,7 +72,7 @@ const projectData = [
       "React Icons",
       "Vite",
     ],
-    demo: "#Home",
+    demo: "https://fam252004.github.io/portfolio/",
     code: "https://github.com/fam252004/portfolio",
     date: "May 2026",
   },
