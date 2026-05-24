@@ -1,50 +1,109 @@
-import React from 'react';
-import { FaGraduationCap } from 'react-icons/fa';
+import React from "react";
+import { FaGraduationCap } from "react-icons/fa";
 
 const educationData = [
   {
-    institution: 'National Institute of Technology, Goa',
-    duration: '2022 - 2026',
+    institution: "National Institute of Technology, Goa",
+    duration: "2022 - 2026",
+
     details: [
-      { title: 'B.Tech, Electrical & Electronics Engineering', score: 'CGPA: 8.69' },
-      { title: 'Minor, Computer Science & Engineering', score: 'CGPA: 8.79' }
-    ]
+      {
+        title:
+          "B.Tech in Electrical & Electronics Engineering",
+        score: "CGPA: 8.74",
+      },
+
+      {
+        title:
+          "Minor Degree in Computer Science Engineering",
+        score: "CGPA: 8.65",
+      },
+    ],
   },
+
   {
-    institution: 'Delhi Public School - Bangalore South, CBSE',
-    duration: '2012 - 2022',
+    institution:
+      "Delhi Public School - Bangalore South",
+    duration: "2020 - 2022",
+
     details: [
-      { title: 'Class 12', score: '92%' },
-      { title: 'Class 10', score: '90%' }
-    ]
-  }
+      {
+        title: "Class XII (CBSE)",
+        score: "92%",
+      },
+
+      {
+        title: "Class X (CBSE)",
+        score: "90%",
+      },
+    ],
+  },
 ];
 
 const Education = () => {
   return (
-    <section id="Education" className="text-white px-6 py-16 md:px-24">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-        Education
-      </h2>
-      <div className="max-w-4xl mx-auto flex flex-col gap-8">
+    <section
+      id="Education"
+      className="text-white px-6 py-20 md:px-24"
+    >
+      <div className="text-center mb-16">
+        <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          Education
+        </h2>
+
+        <p className="text-gray-400 text-lg">
+          My academic background and qualifications.
+        </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto flex flex-col gap-8">
         {educationData.map((edu, index) => (
-          <div 
-            key={index} 
-            className="bg-slate-900 bg-opacity-50 rounded-lg p-6 flex gap-6 items-start shadow-lg transform hover:scale-105 transition-transform duration-300"
+          <div
+            key={index}
+            className="bg-[#111827] border border-cyan-500/10 rounded-2xl p-8 shadow-lg hover:shadow-cyan-500/20 transition duration-300"
           >
-            <div className="text-cyan-400 mt-1">
-              <FaGraduationCap size={40} />
-            </div>
-            <div className="w-full">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                <h3 className="text-xl font-semibold text-white">{edu.institution}</h3>
-                <p className="text-sm text-cyan-300 font-mono mt-1 md:mt-0">{edu.duration}</p>
+            <div className="flex gap-5 items-start">
+
+              <div className="bg-cyan-500/10 p-4 rounded-xl">
+                <FaGraduationCap
+                  size={32}
+                  className="text-cyan-300"
+                />
               </div>
-              {edu.details.map((detail, i) => (
-                 <p key={i} className="font-medium text-gray-300">
-                   {detail.title}: <span className="font-normal text-gray-400 italic">{detail.score}</span>
-                 </p>
-              ))}
+
+              <div className="flex-1">
+
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+
+                  <h3 className="text-2xl font-semibold">
+                    {edu.institution}
+                  </h3>
+
+                  <span className="text-sm text-gray-400">
+                    {edu.duration}
+                  </span>
+
+                </div>
+
+                <div className="space-y-4">
+                  {edu.details.map((detail, i) => (
+                    <div
+                      key={i}
+                      className="border-l-2 border-cyan-400 pl-4"
+                    >
+                      <p className="text-lg text-gray-200">
+                        {detail.title}
+                      </p>
+
+                      <p className="text-cyan-300 mt-1">
+                        {detail.score}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+
             </div>
           </div>
         ))}

@@ -1,50 +1,80 @@
-import React from 'react';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import React from "react";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
-// The key change is that this component NO LONGER imports a static image.
-// It uses the 'image' prop passed to it.
-
-const ProjectCard = ({ title, main, demo, code, techStack, date, image }) => {
+const ProjectCard = ({
+  title,
+  main,
+  demo,
+  code,
+  techStack,
+  date,
+  image,
+}) => {
   return (
-    <div className="p-4 flex flex-col w-full max-w-sm bg-[#0c0e19] shadow-xl shadow-slate-900 rounded-2xl transition-transform transform hover:-translate-y-2 duration-300">
+    <div className="bg-[#0f172a] border border-cyan-500/10 rounded-2xl overflow-hidden shadow-xl hover:shadow-cyan-500/20 transition duration-300 hover:-translate-y-2 flex flex-col max-w-sm">
       
-      {/* This line is now fixed to use the 'image' prop from outside */}
-      <img className="rounded-lg mb-4 h-48 w-full object-cover object-top" src={image} alt={`${title} project banner`} />
-      
-      <div className="flex justify-between items-center px-2 mb-2">
-        <h3 className="text-xl font-bold leading-normal text-white">
-          {title}
-        </h3>
-        {date && (
-          <p className="text-sm text-gray-400 font-mono flex-shrink-0 ml-2">
+      <img
+        className="h-52 w-full object-cover object-top"
+        src={image}
+        alt={title}
+      />
+
+      <div className="p-5 flex flex-col flex-grow">
+
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <h3 className="text-xl font-bold text-white">
+            {title}
+          </h3>
+
+          <span className="text-xs text-cyan-300 whitespace-nowrap">
             {date}
-          </p>
-        )}
-      </div>
-
-      <p className="px-2 text-sm text-gray-300 leading-tight flex-grow">{main}</p>
-      
-      <div className="px-2 mt-4 flex flex-wrap gap-2">
-        {techStack?.map((tech, index) => (
-          <span key={index} className="bg-gray-700 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">
-            {tech}
           </span>
-        ))}
-      </div>
+        </div>
 
-      <div className="mt-5 p-2 flex gap-4">
-        {demo && (
-          <a href={demo} target="_blank" rel="noopener noreferrer" className="flex-1">
-            <button className="w-full flex items-center justify-center gap-2 text-white py-2 px-4 hover:bg-[#5a6ac4] duration-300 font-semibold rounded-full bg-[#465697]">
-              <FaExternalLinkAlt /> Demo
+        <p className="text-gray-300 text-sm leading-relaxed flex-grow">
+          {main}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-5">
+          {techStack?.map((tech, index) => (
+            <span
+              key={index}
+              className="bg-cyan-500/10 text-cyan-300 text-xs px-3 py-1 rounded-full"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex gap-4 mt-6">
+
+          {demo && demo !== "#" && (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1"
+            >
+              <button className="w-full flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold py-2 rounded-full transition duration-300">
+                <FaExternalLinkAlt />
+                Demo
+              </button>
+            </a>
+          )}
+
+          <a
+            href={code}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1"
+          >
+            <button className="w-full flex items-center justify-center gap-2 border border-cyan-400 hover:bg-cyan-400 hover:text-black text-white font-semibold py-2 rounded-full transition duration-300">
+              <FaGithub />
+              Code
             </button>
           </a>
-        )}
-        <a href={code} target="_blank" rel="noopener noreferrer" className="flex-1">
-          <button className="w-full flex items-center justify-center gap-2 text-white py-2 px-4 hover:bg-[#5a6ac4] duration-300 font-semibold rounded-full bg-[#465697]">
-            <FaGithub /> Code
-          </button>
-        </a>
+
+        </div>
       </div>
     </div>
   );

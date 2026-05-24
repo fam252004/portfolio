@@ -4,11 +4,6 @@ import { FiMenu, FiX } from "react-icons/fi";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // The navigation links are updated here for the new sections
   const navLinks = [
     { href: "#About", title: "About" },
     { href: "#Skills", title: "Skills" },
@@ -20,40 +15,52 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#171d32] text-white shadow-md px-6 py-4">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#050816]/90 backdrop-blur-md border-b border-cyan-500/10 text-white px-6 md:px-14 py-5">
+      
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-cyan-400">Mohammed Fahim</h1>
 
-        {/* Hamburger for small screens */}
+        <a
+          href="#Home"
+          className="text-2xl font-bold tracking-wide"
+        >
+          <span className="text-cyan-400">Mohammed</span> Fahim
+        </a>
+
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-cyan-300 transition duration-300"
+            >
+              {link.title}
+            </a>
+          ))}
+        </div>
+
         <div className="md:hidden">
-          <button onClick={toggleMenu} aria-label="Toggle menu">
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
           </button>
         </div>
 
-        {/* Menu - Desktop */}
-        <ul className="hidden md:flex space-x-6 font-medium">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="hover:text-cyan-400 transition-colors duration-300">
-                {link.title}
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      {/* Menu - Mobile */}
       {isOpen && (
-        <ul className="md:hidden mt-4 flex flex-col space-y-4 font-medium text-center bg-[#1e253f] p-4 rounded-lg">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} onClick={toggleMenu}>
+        <div className="md:hidden mt-6 bg-[#0f172a] rounded-2xl p-6 border border-cyan-500/10">
+          <div className="flex flex-col gap-5 text-center">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="hover:text-cyan-300 transition duration-300"
+              >
                 {link.title}
               </a>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </div>
       )}
     </nav>
   );
